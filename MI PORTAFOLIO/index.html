@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Green Portfolio | Curated Edition</title>
+    <style>
+        :root {
+            --neon-green: #39ff14;
+            --dark-bg: #050505;
+            --glow: 0 0 15px rgba(57, 255, 20, 0.4);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('verde y chaleco.png');
+            background-attachment: fixed;
+            background-size: cover;
+            color: #fff;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header { text-align: center; padding: 50px 20px; }
+        h1 { color: var(--neon-green); text-shadow: var(--glow); font-size: 2.5rem; margin: 0; letter-spacing: 4px; }
+        
+        nav { margin: 30px 0; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+        
+        .nav-btn {
+            background: transparent;
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--neon-green);
+            color: #000;
+            box-shadow: var(--glow);
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 90%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding-bottom: 100px;
+        }
+
+        .card {
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid #222;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: 0.3s;
+            display: block; /* Por defecto se ven todas */
+        }
+
+        .card:hover { border-color: var(--neon-green); box-shadow: var(--glow); transform: translateY(-5px); }
+
+        .card img { width: 100%; height: 280px; object-fit: cover; }
+
+        .card-content { padding: 15px; border-top: 1px solid #222; }
+        .card-content h3 { color: var(--neon-green); margin: 0; font-size: 1rem; }
+        .category-label { font-size: 0.6rem; color: #666; text-transform: uppercase; }
+
+        /* Lightbox */
+        .lightbox {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center;
+        }
+        .lightbox img { max-width: 90%; max-height: 80vh; border: 1px solid var(--neon-green); }
+    .contact-footer {
+            width: 100%;
+            max-width: 1100px;
+            margin-top: 50px;
+            padding: 40px 20px;
+            border-top: 1px dashed var(--neon-green);
+            text-align: center;
+        }
+
+        .terminal-header {
+            color: #000;
+            background: var(--neon-green);
+            display: inline-block;
+            padding: 2px 15px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-bottom: 30px;
+            box-shadow: var(--glow);
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            font-size: 0.9rem;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .label {
+            color: #666;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+        }
+
+        .link, .text {
+            color: var(--neon-green);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .link:hover {
+            text-shadow: var(--glow);
+            letter-spacing: 1px;
+        }
+
+        .copyright {
+            margin-top: 60px;
+            font-size: 0.6rem;
+            color: #333;
+            letter-spacing: 3px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>WELCOME TO MY ART</h1>
+    <p>// por Juanma Jimenez</p>
+    <nav>
+        
+        <button class="nav-btn" onclick="filter('personajes', this)">PERSONAJES</button>
+        <button class="nav-btn" onclick="filter('fanart', this)">FANART</button>
+        <button class="nav-btn" onclick="filter('comics', this)">CÓMICS</button>
+        <button class="nav-btn active" onclick="filter('all', this)">TODO</button>
+    </nav>
+</header>
+
+<div class="container">
+
+    <!-- === SECCIÓN: PERSONAJES (Añade hasta 6) === -->
+    <div class="card" data-cat="personajes" onclick="openLB(this)">
+        <img src="Aza.jpg" alt="Aza">
+        <div class="card-content">
+            <span class="category-label">personaje principal de uno de mis proyectos </span>
+            <h3>Aza</h3>
+        </div>
+    </div>
+    <div class="card" data-cat="personajes" onclick="openLB(this)">
+        <img src="chako.jpg" alt="chako">
+        <div class="card-content">
+            <span class="category-label">seirim, amigo y amigo fiel de Aza</span>
+            <h3>Chako</h3>
+        </div>
+    </div>
+    <div class="card" data-cat="personajes" onclick="openLB(this)">
+        <img src="duelo.png" alt="duelo">
+        <div class="card-content">
+            <span class="category-label">enfrentamiento entre demonios</span>
+            <h3>Duelo</h3>
+        </div>
+    </div>
+    <div class="card" data-cat="personajes" onclick="openLB(this)">
+        <img src="monster.png" alt="monster">
+        <div class="card-content">
+            <span class="category-label">criatura para ´´ GLOOMY´´ proyecto personal</span>
+            <h3>Monster</h3>
+        </div>
+    </div>
+    <div class="card" data-cat="personajes" onclick="openLB(this)">
+        <img src="gugon.png" alt="gugon">
+        <div class="card-content">
+            <span class="category-label">guerrero de raza anfibio de mi historia TAXOWAR</span>
+            <h3>Gugon</h3>
+        </div>
+    </div>
+    <div class="card" data-cat="personajes" onclick="openLB(this)">
+        <img src="gloomy2.jpg" alt="glommy2">
+        <div class="card-content">
+            <span class="category-label">el guerrero solitario de la oscuridad</span>
+            <h3>Gloomy</h3>
+        </div>
+    </div>
+    <!-- Repite el bloque anterior para P2, P3, P4, P5, P6 -->
+
+    <!-- === SECCIÓN: FANART (Añade hasta 6) === -->
+    <div class="card" data-cat="fanart" onclick="openLB(this)">
+        <img src="batman.jpg" alt="batman">
+        <div class="card-content">
+            <span class="category-label">el caballero de la noche</span>
+            <h3>Batman</h3>
+        </div>
+    </div>
+    <div class="card" data-cat="fanart" onclick="openLB(this)">
+        <img src="canario negro.png" alt="canario negro">
+        <div class="card-content">
+            <span class="category-label">voz ultrasonica</span>
+            <h3>Black Canary</h3>
+        </div>
+    </div>
+    <div class="card" data-cat="fanart" onclick="openLB(this)">
+        <img src="harley.png" alt="harley">
+        <div class="card-content">
+            <span class="category-label">la bella arlequin de gotham</span>
+            <h3>Harley</h3>
+        </div>
+    </div>
+    <div class="card" data-cat="fanart" onclick="openLB(this)">
+        <img src="superboy.jpg" alt="superboy">
+        <div class="card-content">
+            <span class="category-label">hola, niños !</span>
+            <h3>Superboy</h3>
+        </div>
+    </div>
+    <div class="card" data-cat="fanart" onclick="openLB(this)">
+        <img src="spiderman.jpg" alt="spiderman">
+        <div class="card-content">
+            <span class="category-label">araña vs arena</span>
+            <h3>Spiderman</h3>
+        </div>
+    </div>
+    <div class="card" data-cat="fanart" onclick="openLB(this)">
+        <img src="myoclon.jpg" alt="fanart del comic colombiano ´´elemental´´">
+        <div class="card-content">
+            <span class="category-label">Fanart</span>
+            <h3>Myoclon</h3>
+        </div>
+    </div>
+    <!-- Repite el bloque anterior para F2, F3, F4, F5, F6 -->
+
+    <!-- === SECCIÓN: CÓMICS (Añade hasta 6) === -->
+    <div class="card" data-cat="comics" onclick="openLB(this)">
+        <img src="cap comic.jpg" alt="cap comic">
+        <div class="card-content">
+            <span class="category-label">las guerreras vs los zombies</span>
+            <h3>pagina de muestra</h3>
+        </div>
+    </div>
+    <div class="card" data-cat="comics" onclick="openLB(this)">
+        <img src="gloomy.jpg" alt="gloomy">
+        <div class="card-content">
+            <span class="category-label">pagina de glommy</span>
+            <h3>Gloomy</h3>
+        </div>
+    </div>
+    <div class="card" data-cat="comics" onclick="openLB(this)">
+        <img src="limpiador2.jpg" alt="limpiador2">
+        <div class="card-content">
+            <span class="category-label">pagina 2 de EL LIMPIADOR</span>
+            <h3>EL LIMPIADOR PAG 2</h3>
+        </div>
+    </div>
+    <div class="card" data-cat="comics" onclick="openLB(this)">
+        <img src="limpiador3.jpg" alt="limpiador3">
+        <div class="card-content">
+            <span class="category-label">pagina 3 de EL LIMPIADOR</span>
+            <h3>EL LIMPIADOR PAG 3</h3>
+        </div>
+    </div>
+    <div class="card" data-cat="comics" onclick="openLB(this)">
+        <img src="superman1.jpg" alt="superman1">
+        <div class="card-content">
+            <span class="category-label">pagina 1</span>
+            <h3>Superman</h3>
+        </div>
+    </div>
+    <div class="card" data-cat="comics" onclick="openLB(this)">
+        <img src="superman2.jpg" alt="superman2">
+        <div class="card-content">
+            <span class="category-label">pagina 2</span>
+            <h3>Superman</h3>
+        </div>
+    </div>
+    <!-- Repite el bloque anterior para C2, C3, C4, C5, C6 -->
+
+</div>
+
+<div id="lb" class="lightbox" onclick="this.style.display='none'">
+    <img id="lb-img" src="">
+</div>
+<!-- --- PIE DE PÁGINA DE CONTACTO --- -->
+<footer class="contact-footer">
+    <div class="terminal-header">CONTACTAME</div>
+    <div class="contact-grid">
+        <div class="contact-item">
+            <span class="label">EMAIL:</span>
+            <a href="mailto:tu-correo@ejemplo.com" class="link">juanmajp07@gmail.com</a>
+        </div>
+        <div class="contact-item">
+            <span class="label">WHATSAPP:</span>
+            <a href="https://wa.me/tu-numero" class="link">+573054199913</a>
+        </div>
+        <div class="contact-item">
+            <span class="label">LOCATION:</span>
+            <span class="text">COLOMBIA</span>
+        </div>
+    </div>
+    <p class="copyright">© 2026 JUANMA JIMENEZ - ALL RIGHTS RESERVED</p>
+</footer>
+
+<script>
+    function filter(cat, btn) {
+        // Actualizar botones
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Filtrar tarjetas
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    function openLB(el) {
+        document.getElementById('lb-img').src = el.querySelector('img').src;
+        document.getElementById('lb').style.display = 'flex';
+    }
+</script>
+
+</body>
+</html>
